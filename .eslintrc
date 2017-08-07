@@ -1,0 +1,30 @@
+{
+  "extends": ["eslint:recommended"],
+  "rules": {
+    "semi": ["error", "never"],
+    "comma-dangle": 0,
+    "space-before-function-paren": ["error", "always"],
+    "indent": 0,
+    "linebreak-style": 0,
+    "max-len": ["error", 120],
+    "no-param-reassign": 0,
+    "no-underscore-dangle": 0,
+    "no-use-before-define": 0,
+    "func-names": 0,
+    "no-restricted-syntax": 0,
+    "no-new-func": 0
+  },
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true,
+    "node": true,
+    "jest": true,
+    "es6": true
+  },
+  "globals": {
+    "renderApp": true,
+    "createComponent": true,
+    "browserHistory": true,
+    "route": true
+  }
+}

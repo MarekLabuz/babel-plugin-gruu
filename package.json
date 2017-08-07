@@ -1,0 +1,30 @@
+{
+  "name": "babel-plugin-gruu",
+  "version": "1.0.0",
+  "description": "Babel plugin for transpiling JSX to Gruu",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watchAll --verbose --coverage",
+    "dev": "nodemon --exec babel example.js"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.25.0",
+    "babel-eslint": "^7.2.3",
+    "eslint": "^3.18.0",
+    "gruujs": "^1.4.1",
+    "jest": "^20.0.4",
+    "nodemon": "^1.11.0"
+  },
+  "dependencies": {
+    "babel-plugin-syntax-jsx": "^6.18.0"
+  },
+  "repository": "https://github.com/MarekLabuz/babel-plugin-gruu.git",
+  "author": "Marek Łabuz",
+  "license": "MIT",
+  "keywords": [
+    "babel-plugin",
+    "gruu"
+  ]
+}
