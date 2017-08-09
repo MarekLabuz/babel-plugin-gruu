@@ -26,16 +26,16 @@ const parseChildren = t => children => children.map(child => {
     ])
   }
 
-  if (t.isJSXElement(child) || t.isIdentifier(child)) {
-    return child
+  if (t.isArrayExpression(child) || t.isCallExpression(child)) {
+    return componentExpression(t)([
+      t.objectProperty(t.identifier('children'), child)
+    ])
   }
 
-  return null
+  return child
 }).filter(v => v)
 
-const excludedAttributes = [
-
-]
+const excludedAttributes = ['_type', 'children', '$children']
 
 module.exports = (babel) => {
   const t = babel.types
@@ -52,16 +52,16 @@ module.exports = (babel) => {
 
         const preparedChildren = prepareChildren(t)(children)
         const items = (parseChildren(t)(preparedChildren.items))
-        const childrenProperty = [t.objectProperty(
+        const childrenProperty = items.length > 0 ? [t.objectProperty(
           t.identifier('children'),
           t.arrayExpression(items)
-        )]
+        )] : []
 
         path.replaceWith(componentExpression(t)([
           ...typeProperty,
           ...childrenProperty,
           ...attributes
-            .filter(({ name }) => !excludedAttributes.includes(name))
+            .filter(({ name }) => !excludedAttributes.includes(name.name))
             .map(({ name, value }) => (
               t.objectProperty(
                 t.identifier(name.name),

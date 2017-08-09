@@ -6,16 +6,23 @@
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watchAll --verbose --coverage",
-    "dev": "nodemon --exec babel example.js"
+    "dev": "nodemon --exec babel index.js",
+    "build": "webpack",
+    "build:watch": "webpack --progress --colors --watch",
+    "start": "node server.js"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-core": "^6.25.0",
     "babel-eslint": "^7.2.3",
+    "babel-loader": "^7.1.1",
+    "babel-preset-env": "^1.6.0",
     "eslint": "^3.18.0",
+    "express": "^4.15.4",
     "gruujs": "^1.4.1",
     "jest": "^20.0.4",
-    "nodemon": "^1.11.0"
+    "nodemon": "^1.11.0",
+    "webpack": "^3.5.1"
   },
   "dependencies": {
     "babel-plugin-syntax-jsx": "^6.18.0"
