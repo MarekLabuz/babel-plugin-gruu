@@ -1,4 +1,4 @@
- const babelPluginSyntaxJSX = require('babel-plugin-syntax-jsx')
+const babelPluginSyntaxJSX = require('babel-plugin-syntax-jsx')
 
 const componentExpression = t => properties => (
   t.callExpression(t.memberExpression(t.identifier('Gruu'), t.identifier('createComponent')), [
@@ -61,12 +61,16 @@ module.exports = (babel) => {
           ...typeProperty,
           ...childrenProperty,
           ...attributes
-            .filter(v => v && v.name && !excludedAttributes.includes(v.name.name))
-            .map(({ name, value }) => (
-              t.objectProperty(
-                t.identifier(name.name),
-                t.isStringLiteral(value) ? value : value.expression
-              )
+            .filter(v => !v.name || !excludedAttributes.includes(v.name.name))
+            .map(({ name, value, argument }) => (
+              argument
+                ? t.spreadProperty(argument)
+                : (
+                  t.objectProperty(
+                    t.identifier(name.name),
+                    t.isStringLiteral(value) ? value : value.expression
+                  )
+                )
             ))
         ]))
       }
