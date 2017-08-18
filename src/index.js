@@ -61,7 +61,7 @@ module.exports = (babel) => {
           ...typeProperty,
           ...childrenProperty,
           ...attributes
-            .filter(({ name }) => !excludedAttributes.includes(name.name))
+            .filter(v => v && v.name && !excludedAttributes.includes(v.name.name))
             .map(({ name, value }) => (
               t.objectProperty(
                 t.identifier(name.name),
