@@ -134,4 +134,21 @@ describe('parser', () => {
     ).replace(/\s/g, ''))
 
   })
+
+  test('renders spread attribute', () => {
+    const code = codeGen(`
+      <div
+        {...({ className: 'test' })}
+      >
+      </div>`
+    )
+
+    expect(code.replace(/\s/g, '')).toBe((`
+      Gruu.createComponent({
+        _type: 'div',
+        ...{ className: 'test' }
+      });`
+    ).replace(/\s/g, ''))
+
+  })
 })
