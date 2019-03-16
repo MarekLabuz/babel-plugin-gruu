@@ -1,2 +1,10 @@
-.idea
 node_modules
+bundle.js
+coverage
+server.js
+.babelrc
+index.js
+index.html
+index.css
+webpack.config.js
+.DS_Store
